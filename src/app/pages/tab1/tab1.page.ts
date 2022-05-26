@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'src/app/interfaces';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class Tab1Page implements OnInit {
 
+  public articles: Article[] = [];
+
   constructor(private newsService: NewsService) {}
 
   ngOnInit(){
-    this.newsService.getNews().subscribe(articles => {
-      console.log(articles);
-    })
+    this.newsService.getNews().subscribe(res => {
+      this.articles = res;
+    });
   }
 
 }
